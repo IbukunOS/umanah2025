@@ -33,9 +33,8 @@ const Hero = () => {
       y: 0,
       opacity: 1,
       transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 10,
+        duration: 0.5,
+        ease: [0.22, 1, 0.36, 1] as const,
       }
     }
   };
@@ -47,7 +46,7 @@ const Hero = () => {
       transition: {
         duration: 4,
         repeat: Infinity,
-        ease: "easeInOut"
+        ease: [0.42, 0, 0.58, 1] as const
       }
     }
   };
@@ -131,7 +130,7 @@ const Hero = () => {
           <motion.div
             className="ml-2"
             animate={{ rotate: 360 }}
-            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+            transition={{ duration: 2, repeat: Infinity, ease: [0, 0, 1, 1] as const }}
           >
             ✨
           </motion.div>
@@ -153,7 +152,7 @@ const Hero = () => {
             transition={{
               duration: 3,
               repeat: Infinity,
-              ease: "easeInOut"
+              ease: [0.42, 0, 0.58, 1] as const
             }}
             style={{
               background: "linear-gradient(45deg, #a855f7, #3b82f6, #06b6d4, #a855f7)",

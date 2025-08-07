@@ -75,9 +75,8 @@ const Messages = () => {
       y: 0,
       scale: 1,
       transition: {
-        type: "spring",
-        stiffness: 500,
-        damping: 30
+        duration: 0.45,
+        ease: [0.22, 1, 0.36, 1] as const
       }
     },
     exit: {
@@ -112,7 +111,7 @@ const Messages = () => {
               transition={{
                 duration: 4,
                 repeat: Infinity,
-                ease: "easeInOut"
+                ease: [0.42, 0, 0.58, 1] as const
               }}
             />
             <motion.div
@@ -124,7 +123,7 @@ const Messages = () => {
               transition={{
                 duration: 3,
                 repeat: Infinity,
-                ease: "easeInOut",
+                ease: [0.42, 0, 0.58, 1] as const,
                 delay: 1
               }}
             />
@@ -143,7 +142,7 @@ const Messages = () => {
               </CardTitle>
               <motion.div
                 animate={{ rotate: 360 }}
-                transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                transition={{ duration: 4, repeat: Infinity, ease: [0, 0, 1, 1] as const }}
               >
                 ✨
               </motion.div>
@@ -221,7 +220,7 @@ const Messages = () => {
                       transition={{ 
                         duration: 2, 
                         repeat: Infinity,
-                        ease: "easeInOut"
+                        ease: [0.42, 0, 0.58, 1] as const
                       }}
                       className="text-6xl mb-4"
                     >
@@ -286,7 +285,7 @@ const Messages = () => {
                         className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
                         initial={{ x: "-100%" }}
                         whileHover={{ x: "100%" }}
-                        transition={{ duration: 1, ease: "easeInOut" }}
+                        transition={{ duration: 1, ease: [0.42, 0, 0.58, 1] as const }}
                       />
                     </motion.div>
                   </motion.article>

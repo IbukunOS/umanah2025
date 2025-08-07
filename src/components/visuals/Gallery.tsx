@@ -57,9 +57,8 @@ const Gallery = () => {
       scale: 1,
       y: 0,
       transition: {
-        type: "spring",
-        stiffness: 300,
-        damping: 25
+        duration: 0.5,
+        ease: [0.22, 1, 0.36, 1] as const
       }
     },
     exit: {
@@ -94,7 +93,7 @@ const Gallery = () => {
               transition={{
                 duration: 6,
                 repeat: Infinity,
-                ease: "easeInOut"
+                ease: [0.42, 0, 0.58, 1] as const
               }}
             />
             <motion.div
@@ -106,7 +105,7 @@ const Gallery = () => {
               transition={{
                 duration: 4,
                 repeat: Infinity,
-                ease: "easeInOut",
+                ease: [0.42, 0, 0.58, 1] as const,
                 delay: 2
               }}
             />
@@ -131,7 +130,7 @@ const Gallery = () => {
                 transition={{ 
                   duration: 3, 
                   repeat: Infinity, 
-                  ease: "easeInOut"
+                  ease: [0.42, 0, 0.58, 1] as const
                 }}
               >
                 📸
@@ -218,7 +217,7 @@ const Gallery = () => {
                       transition={{ 
                         duration: 3, 
                         repeat: Infinity,
-                        ease: "easeInOut"
+                        ease: [0.42, 0, 0.58, 1] as const
                       }}
                       className="text-8xl mb-6"
                     >
@@ -284,7 +283,7 @@ const Gallery = () => {
                       className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100"
                       initial={{ x: "-100%" }}
                       whileHover={{ x: "100%" }}
-                      transition={{ duration: 1, ease: "easeInOut" }}
+                      transition={{ duration: 1, ease: [0.42, 0, 0.58, 1] as const }}
                     />
                   </motion.figure>
                 ))}
