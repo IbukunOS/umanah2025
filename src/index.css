@@ -193,10 +193,11 @@
   animation: shimmer 2s infinite;
 }
 
-/* Locomotive Scroll overrides */
+/* Locomotive Scroll container: allow native scroll fallback */
 [data-scroll-container] {
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh;
+  overflow: auto;
+  will-change: transform;
 }
 
 .c-scrollbar_thumb {
