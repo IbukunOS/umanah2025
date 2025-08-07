@@ -118,6 +118,7 @@ export default {
 				display: ['Playfair Display', 'serif'],
 				sans: ['Space Grotesk', 'ui-sans-serif', 'system-ui']
 			}
+		}
 	},
 	plugins: [require("tailwindcss-animate")],
 } satisfies Config;
