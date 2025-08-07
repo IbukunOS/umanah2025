@@ -1,61 +1,31 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 280 75% 45%;
-    --primary-glow: 280 90% 65%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 300 35% 96%;
-    --secondary-foreground: 280 75% 20%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 260 85% 60%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-    --radius: 0.7rem;
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
-    --primary: 210 40% 98%;
-    --primary-glow: 280 90% 65%;
+    --primary: 280 100% 70%;
+    --primary-glow: 280 100% 80%;
     --primary-foreground: 222.2 47.4% 11.2%;
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
-    --accent: 260 85% 60%;
+    --accent: 260 100% 75%;
     --accent-foreground: 210 40% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
+    --radius: 0.7rem;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -71,16 +41,69 @@
   * {
     @apply border-border;
   }
+  
+  html {
+    scroll-behavior: auto;
+  }
+  
   body {
     @apply bg-background text-foreground;
+    background: radial-gradient(ellipse 80% 80% at 50% -20%, rgba(120, 60, 200, 0.3), transparent),
+                linear-gradient(180deg, hsl(222.2 84% 4.9%) 0%, hsl(217.2 32.6% 12%) 100%);
+    min-height: 100vh;
   }
 }
 
 @layer utilities {
+  .floating-orbs::before,
+  .floating-orbs::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    z-index: 0;
+    animation: float 20s ease-in-out infinite;
+    pointer-events: none;
+  }
+  
+  .floating-orbs::before {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.4) 0%, transparent 70%);
+    top: 20%;
+    right: 10%;
+    animation-delay: -5s;
+  }
+  
+  .floating-orbs::after {
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%);
+    bottom: 20%;
+    left: 15%;
+    animation-delay: -10s;
+  }
+  
   .story-link {
     position: relative;
     display: inline-block;
+    overflow: hidden;
   }
+  
+  .story-link::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s;
+  }
+  
+  .story-link:hover::before {
+    left: 100%;
+  }
+  
   .story-link::after {
     content: "";
     position: absolute;
@@ -90,23 +113,98 @@
     height: 2px;
     transform: scaleX(0);
     transform-origin: bottom right;
-    background: #8627b0;
+    background: linear-gradient(90deg, #a855f7, #3b82f6);
     transition: transform 300ms ease;
   }
+  
   .story-link:hover::after {
     transform: scaleX(1);
     transform-origin: bottom left;
   }
+  
   .hover-scale {
-    transition: transform 200ms ease;
+    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
   }
+  
   .hover-scale:hover {
-    transform: translateY(-2px) scale(1.02);
+    transform: translateY(-8px) scale(1.05);
   }
+  
   .glass {
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(214, 211, 209, 0.3);
-    box-shadow: 0 10px 30px -10px rgba(134, 39, 176, 0.35);
+    background: rgba(15, 15, 15, 0.8);
+    backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 
+      0 32px 64px -12px rgba(0, 0, 0, 0.25),
+      0 0 0 1px rgba(255, 255, 255, 0.05),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
   }
+  
+  .glass-subtle {
+    background: rgba(20, 20, 30, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  
+  .gradient-text {
+    background: linear-gradient(135deg, #a855f7 0%, #3b82f6 50%, #06b6d4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .glow-effect {
+    filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.5));
+  }
+  
+  .parallax-bg {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  33% { transform: translate3d(30px, -30px, 0) rotate(120deg); }
+  66% { transform: translate3d(-20px, 20px, 0) rotate(240deg); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+  }
+  50% { 
+    box-shadow: 0 0 40px rgba(168, 85, 247, 0.8), 0 0 60px rgba(59, 130, 246, 0.4);
+  }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+}
+
+/* Locomotive Scroll overrides */
+[data-scroll-container] {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.c-scrollbar_thumb {
+  background: linear-gradient(180deg, #a855f7, #3b82f6) !important;
+  border-radius: 4px !important;
+  width: 6px !important;
+}
+
+.c-scrollbar_track {
+  background: rgba(255, 255, 255, 0.1) !important;
 }
