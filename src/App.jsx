@@ -1,18 +1,19 @@
 import './App.css'
 import Capsule from './components/Capsule/Index'
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Home from './components/Home/Index'
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Para from './components/Paragraph/Index'
-import Para2 from './components/Paragraph2/Index'
+import BirthdayInsights from './components/BirthdayInsights/Index'
+import BirthdayTestimonies from './components/BirthdayTestimonies/Index'
 import Wishes from './components/Wishes/Index'
-import Gallery from './components/Gallery/Index'
 import LocomotiveScroll from 'locomotive-scroll';
-import Footer from './components/Footer/Index';
+import ScrollToTop from './components/ScrollToTop/Index';
+import Gallery from './components/Gallery/Index';
 
 function App() {
   const scrollRef = useRef(null);
+  const [page, setPage] = useState('home');
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -25,7 +26,7 @@ function App() {
         scroll.destroy();
       };
     }
-  }, []);
+  }, [page]);
 
   useEffect(() => {
     const list = document.querySelectorAll('.section')
@@ -44,18 +45,22 @@ function App() {
     })
   })
       
+  const handleGalleryClick = () => setPage('gallery');
+  const handleBackClick = () => setPage('home');
 
+  if (page === 'gallery') {
+    return <Gallery onBack={handleBackClick} />
+  }
 
   return (
     
     <div className='section main w-full '>
-      <Home  />
+      <Home onGalleryClick={handleGalleryClick} />
       <Wishes />
-      <Gallery />
-      <Para  />
-      <Para2 />
+      <BirthdayInsights  />
+      <BirthdayTestimonies />
       <Capsule />
-      <Footer />
+      <ScrollToTop />
     </div>    
   )
 }

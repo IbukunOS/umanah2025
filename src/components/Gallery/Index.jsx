@@ -1,59 +1,35 @@
 import { useState, useEffect } from 'react';
-import { supabase } from '../../supabaseClient';
+import { supabase, supabaseUrl } from '../../supabaseClient';
 
-function Gallery() {
-    const [images, setImages] = useState([]);
-    const [file, setFile] = useState(null);
+function Gallery({ onBack }) {
+    const [files, setFiles] = useState([]);
 
     useEffect(() => {
-        const fetchImages = async () => {
-            const { data, error } = await supabase.storage.from('gallery').list();
-            if (error) {
-                console.error('Error fetching images: ', error);
-            } else {
-                setImages(data);
-            }
+        const fetchFiles = async () => {
+            const { data, error } = await supabase.storage.from('wishes-files').list();
+            if (error) console.error('Error fetching files: ', error);
+            else setFiles(data);
         };
-        fetchImages();
+        fetchFiles();
     }, []);
 
-    const handleFileChange = (e) => {
-        setFile(e.target.files[0]);
-    };
-
-    const handleUpload = async () => {
-        if (!file) return;
-
-        const { data, error } = await supabase.storage
-            .from('gallery')
-            .upload(`${file.name}`.replace(/ /g, '_'), file);
-
-        if (error) {
-            console.error('Error uploading image: ', error);
-        } else {
-            console.log('Image uploaded: ', data);
-            setImages([...images, { name: file.name }]);
-        }
-    };
-
     return (
-        <div data-color="white" className='gallery section font-[SansitaReg] py-20'>
+        <div data-color="white" className='gallery-page section font-[SansitaReg] py-20'>
             <div className="head1">
                 <h1 className="text-5xl sm:text-6xl text-center tracking-tight">
                     Gallery
                 </h1>
+                <div className="text-center mt-4">
+                    <button onClick={onBack} className="bg-[#f5f19c] text-black p-2 rounded-md">Back to Home</button>
+                </div>
             </div>
             <div className="list mt-10 w-full px-8">
                 <div className="grid grid-cols-3 gap-4">
-                    {images.map((image) => (
-                        <div key={image.name} className="aspect-w-1 aspect-h-1">
-                            <img src={`https://YOUR_SUPABASE_URL/storage/v1/object/public/gallery/${image.name}`} alt={image.name} className="object-cover w-full h-full rounded-lg" />
+                    {files.map((file) => (
+                        <div key={file.name} className="aspect-w-1 aspect-h-1">
+                            <img src={`${supabaseUrl}/storage/v1/object/public/wishes-files/${file.name}`} alt={file.name} className="object-cover w-full h-full rounded-lg" />
                         </div>
                     ))}
-                </div>
-                <div className="flex flex-col items-center justify-center py-20">
-                    <input type="file" onChange={handleFileChange} />
-                    <button onClick={handleUpload} className="bg-[#f5f19c] text-black p-2 rounded-md mt-4">Upload Image</button>
                 </div>
             </div>
         </div>
