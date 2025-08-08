@@ -6,7 +6,8 @@ import Home from './components/Home/Index'
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Para from './components/Paragraph/Index'
 import Para2 from './components/Paragraph2/Index'
-import Birthday from './components/Birthday/Index'
+import Wishes from './components/Wishes/Index'
+import Gallery from './components/Gallery/Index'
 import LocomotiveScroll from 'locomotive-scroll';
 import Footer from './components/Footer/Index';
 
@@ -49,7 +50,8 @@ function App() {
     
     <div className='section main w-full '>
       <Home  />
-      <Birthday />
+      <Wishes />
+      <Gallery />
       <Para  />
       <Para2 />
       <Capsule />

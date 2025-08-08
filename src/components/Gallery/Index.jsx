@@ -37,34 +37,23 @@ function Gallery() {
     };
 
     return (
-        <div data-color="salmon" className='gallery section font-[SansitaReg] py-20'>
+        <div data-color="white" className='gallery section font-[SansitaReg] py-20'>
             <div className="head1">
                 <h1 className="text-5xl sm:text-6xl text-center tracking-tight">
-                    Birthday Gallery
+                    Gallery
                 </h1>
             </div>
             <div className="list mt-10 w-full px-8">
                 <div className="grid grid-cols-3 gap-4">
-                    {images.map((image) => {
-                        const { data: publicData } = supabase.storage
-                          .from('gallery')
-                          .getPublicUrl(image.name);
-                        const url = publicData?.publicUrl;
-                        return (
-                          <div key={image.name} className="aspect-square overflow-hidden rounded-lg">
-                            <img
-                              src={url}
-                              alt={`Birthday photo ${image.name}`}
-                              className="object-cover w-full h-full hover-scale"
-                              loading="lazy"
-                            />
-                          </div>
-                        );
-                      })}
+                    {images.map((image) => (
+                        <div key={image.name} className="aspect-w-1 aspect-h-1">
+                            <img src={`https://YOUR_SUPABASE_URL/storage/v1/object/public/gallery/${image.name}`} alt={image.name} className="object-cover w-full h-full rounded-lg" />
+                        </div>
+                    ))}
                 </div>
                 <div className="flex flex-col items-center justify-center py-20">
                     <input type="file" onChange={handleFileChange} />
-                    <button onClick={handleUpload} className="btn px-4 py-2 rounded-md mt-4 hover-scale">Upload Image</button>
+                    <button onClick={handleUpload} className="bg-[#f5f19c] text-black p-2 rounded-md mt-4">Upload Image</button>
                 </div>
             </div>
         </div>

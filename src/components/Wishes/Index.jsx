@@ -17,8 +17,8 @@ function Wishes() {
         e.preventDefault();
 
         const { data, error } = await supabase
-            .from('messages')
-            .insert([{ name, message: wish }])
+            .from('wishes')
+            .insert([{ name, wish }])
 
         if (error) {
             console.error('Error inserting wish: ', error)
@@ -81,7 +81,7 @@ function Wishes() {
                         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                             <input type="text" placeholder="Your Name" value={name} onChange={(e) => setName(e.target.value)} className="p-2 rounded-md" />
                             <textarea placeholder="Your Wish" value={wish} onChange={(e) => setWish(e.target.value)} className="p-2 rounded-md"></textarea>
-                            <button type="submit" className="btn px-4 py-2 rounded-md hover-scale">Send Wish</button>
+                            <button type="submit" className="bg-white text-black p-2 rounded-md">Send Wish</button>
                         </form>
                     </div>
                 </div>

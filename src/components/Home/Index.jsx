@@ -93,11 +93,51 @@ function Home() {
     return (
     <div ref={container} data-color="black" className="home section w-full h-[200vh] relative  ">
         <div className='w-full sticky top-0 left-0 '>
-            {/* navbar removed for birthday theme */}
+            {/* navbar */}
+            <motion.div 
+                variants={{
+                visible: {y: 0},
+                hidden: {y: "-100%"},
+                }}
+                animate={hidden ? "hidden" : "visible"}
+                transition={{duration: 0.35, ease: "easeInOut"}}
+                className="section w-[100vw] sm:w-full px-6 fixed top-0 left-0 z-[9]"
+            >
+                <div className="w-full flex sm:flex items-center justify-between  ">
+                    <div className="logo w-[12vh] h-[12vh] sm:w-[16vh] sm:h-[10vh] cursor-pointer z-[9] ">
+                        {/* logo */}
+                        <img
+                            className="w-full h-full object-contain"
+                            src="https://logowik.com/content/uploads/images/motion-is-a-video-creation-tool5014.logowik.com.webp"
+                        />
+                    </div>                   
+                    <div className="hidden md:flex gap-2 items-center z-[9] cursor-pointer ">
+                        {["SOLUTIONS", "SERVICES", "ABOUT", "CULTURE", "CONTACT"].map((item, index) => (
+                            <h4 key={index} className={`${styles.links} h-[3vh] relative py[2.4vh] px-[2.2vh] text-center  flex flex-col
+                            font-[Sansita] text-[2.1vh] overflow-hidden font-medium leading-[2.5vh]`}> 
+                                <a className={`atag ${styles.atag} relative`}>{item} </a>
+                                <a className={`atag ${styles.atag} relative`}>{item} </a>                      
+                            </h4>   
+                        ))}
+                    </div>
+                    
+                        <BiMenu
+                            style={{
+                            
+                            fontSize: "5.5vw",
+                            }}
+                            className=' inline-block sm:hidden z-[9] cursor-pointer'
+                        />  
+                 
+                    
+                </div>
+            </motion.div>
 
             <div className='btmtext absolute z-[4] bottom-[4%] left-[25%] text-center sm:text-start sm:bottom-[7%] sm:left-8 w-48 '>
                 <h1 className='sm:text-[2vh] font-semibold'>
-                    Let’s celebrate! Birthday vibes, wishes, and memories.
+                    We build big ideas.
+                    Software. Apps. Tools.
+                    For real people. Real lives.
                 </h1>
             </div>
             {/* video div */}
