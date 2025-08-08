@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import heroImage from "@/assets/hero-birthday.jpg";
 import { Button } from "@/components/ui/button";
-import { Sparkles, Star, Zap } from "lucide-react";
+import { Sparkles, Star, Zap, Camera, MessageSquare } from "lucide-react";
 
 const Hero = () => {
   const containerRef = useRef(null);
@@ -177,7 +177,7 @@ const Hero = () => {
         </motion.p>
 
         <motion.div 
-          className="mt-8 flex flex-col sm:flex-row gap-6" 
+          className="mt-8 flex flex-col sm:flex-row gap-4" 
           variants={itemVariants}
           data-scroll 
           data-scroll-speed="1.1"
@@ -189,15 +189,10 @@ const Hero = () => {
             <Button 
               variant="hero" 
               size="lg" 
-              className="px-10 py-6 text-lg font-semibold bg-gradient-to-r from-primary to-accent hover:from-primary/80 hover:to-accent/80 shadow-2xl animate-pulse-glow border-0 relative overflow-hidden group"
+              onClick={() => document.getElementById('messages')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                initial={{ x: "-100%" }}
-                whileHover={{ x: "100%" }}
-                transition={{ duration: 0.6 }}
-              />
-              <span className="relative">Join the Celebration</span>
+              <MessageSquare size={20} />
+              Leave a Wish
             </Button>
           </motion.div>
           
@@ -206,10 +201,11 @@ const Hero = () => {
             whileTap={{ scale: 0.95 }}
           >
             <Button 
-              variant="outline" 
+              variant="glass" 
               size="lg" 
-              className="px-10 py-6 text-lg font-semibold border-white/20 bg-white/5 backdrop-blur-md hover:bg-white/10 text-white"
+              onClick={() => document.getElementById('gallery')?.scrollIntoView({ behavior: 'smooth' })}
             >
+              <Camera size={20} />
               View Gallery
             </Button>
           </motion.div>

@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { motion } from "framer-motion";
 import Hero from "@/components/visuals/Hero";
 import Gallery from "@/components/visuals/Gallery";
-import Messages from "@/components/realtime/Messages";
+import RealtimeMessages from "@/components/realtime/RealtimeMessages";
 import FloatingElements from "@/components/effects/FloatingElements";
 import ParallaxBackground from "@/components/effects/ParallaxBackground";
 import { useLocomotiveScroll } from "@/hooks/use-locomotive-scroll";
@@ -53,7 +53,7 @@ const Index = () => {
             </div>
           </motion.div>
 
-          <Messages />
+          <RealtimeMessages />
           
           {/* Another section divider */}
           <motion.div 

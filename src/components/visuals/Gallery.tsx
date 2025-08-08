@@ -82,34 +82,6 @@ const Gallery = () => {
         viewport={{ once: true }}
       >
         <Card className="glass relative overflow-hidden">
-          {/* Animated Background Elements */}
-          <div className="absolute inset-0 pointer-events-none">
-            <motion.div
-              className="absolute top-1/4 left-10 w-24 h-24 rounded-full bg-gradient-to-r from-accent/20 to-primary/20 blur-2xl"
-              animate={{
-                scale: [1, 1.3, 1],
-                opacity: [0.2, 0.5, 0.2]
-              }}
-              transition={{
-                duration: 6,
-                repeat: Infinity,
-                ease: [0.42, 0, 0.58, 1] as const
-              }}
-            />
-            <motion.div
-              className="absolute bottom-1/4 right-10 w-32 h-32 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 blur-2xl"
-              animate={{
-                scale: [1.2, 1, 1.2],
-                opacity: [0.3, 0.6, 0.3]
-              }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: [0.42, 0, 0.58, 1] as const,
-                delay: 2
-              }}
-            />
-          </div>
 
           <CardHeader className="relative z-10">
             <motion.div
@@ -122,19 +94,7 @@ const Gallery = () => {
               <CardTitle className="font-display text-4xl gradient-text">
                 Party Gallery
               </CardTitle>
-              <motion.div
-                animate={{ 
-                  rotate: [0, 360],
-                  scale: [1, 1.1, 1]
-                }}
-                transition={{ 
-                  duration: 3, 
-                  repeat: Infinity, 
-                  ease: [0.42, 0, 0.58, 1] as const
-                }}
-              >
-                📸
-              </motion.div>
+              <span className="text-2xl">📸</span>
             </motion.div>
           </CardHeader>
 
@@ -161,19 +121,12 @@ const Gallery = () => {
               >
                 <Button 
                   asChild 
-                  className="bg-gradient-to-r from-primary to-accent hover:from-primary/80 hover:to-accent/80 text-white font-semibold relative overflow-hidden group"
+                  variant="hero"
+                  size="lg"
                 >
                   <span>
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                      initial={{ x: "-100%" }}
-                      whileHover={{ x: "100%" }}
-                      transition={{ duration: 0.6 }}
-                    />
-                    <span className="relative flex items-center gap-2">
-                      <Upload size={18} />
-                      Upload Images/Videos
-                    </span>
+                    <Upload size={18} />
+                    Upload Images/Videos
                   </span>
                 </Button>
               </motion.label>
@@ -183,11 +136,10 @@ const Gallery = () => {
                 whileTap={{ scale: 0.95 }}
               >
                 <Button 
-                  variant="secondary" 
+                  variant="glass" 
                   onClick={() => setItems([])}
-                  className="bg-white/10 hover:bg-white/20 border-white/20 text-white"
                 >
-                  <Trash2 size={16} className="mr-2" />
+                  <Trash2 size={16} />
                   Clear All
                 </Button>
               </motion.div>
@@ -209,30 +161,13 @@ const Gallery = () => {
                     exit={{ opacity: 0, scale: 0.8 }}
                     transition={{ duration: 0.5 }}
                   >
-                    <motion.div
-                      animate={{ 
-                        y: [0, -20, 0],
-                        rotate: [0, 10, -10, 0]
-                      }}
-                      transition={{ 
-                        duration: 3, 
-                        repeat: Infinity,
-                        ease: [0.42, 0, 0.58, 1] as const
-                      }}
-                      className="text-8xl mb-6"
-                    >
-                      🎉
-                    </motion.div>
+                    <div className="text-8xl mb-6">🎉</div>
                     <p className="text-muted-foreground text-xl">
                       Drop your first memory!
                     </p>
-                    <motion.p 
-                      className="text-sm text-muted-foreground/60 mt-2"
-                      animate={{ opacity: [0.5, 1, 0.5] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    >
+                    <p className="text-sm text-muted-foreground/60 mt-2">
                       Click "Upload Images/Videos" to get started
-                    </motion.p>
+                    </p>
                   </motion.div>
                 )}
                 
@@ -278,13 +213,6 @@ const Gallery = () => {
                       />
                     )}
 
-                    {/* Shimmer effect */}
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100"
-                      initial={{ x: "-100%" }}
-                      whileHover={{ x: "100%" }}
-                      transition={{ duration: 1, ease: [0.42, 0, 0.58, 1] as const }}
-                    />
                   </motion.figure>
                 ))}
               </AnimatePresence>
