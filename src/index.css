@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 /* width */
 ::-webkit-scrollbar {
     width: 6px;
@@ -18,3 +17,59 @@
     background: #888;
     border-radius: 50px;
   }
+
+/* Design tokens for birthday theme (HSL-based) */
+:root {
+  --surface: 0 0% 100%;
+  --border: 0 0% 90%;
+  --accent: 330 92% 65%;
+  --on-accent: 0 0% 100%;
+
+  --birthday-start: 330 92% 65%;
+  --birthday-mid: 260 90% 70%;
+  --birthday-end: 45 95% 60%;
+
+  --gradient-birthday: linear-gradient(135deg, hsl(var(--birthday-start)), hsl(var(--birthday-mid)), hsl(var(--birthday-end)));
+  --shadow-elegant: 0 10px 30px -10px hsl(var(--birthday-mid) / 0.25);
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes fade-in {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scale-in {
+  0% { transform: scale(0.98); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@layer utilities {
+  .bg-birthday-gradient { 
+    background-image: var(--gradient-birthday); 
+    background-size: 200% 200%;
+    animation: gradientShift 8s ease infinite;
+  }
+  .card { 
+    background-color: hsl(var(--surface) / 0.92); 
+    backdrop-filter: blur(8px);
+    border: 1px solid hsl(var(--border));
+  }
+  .btn {
+    background: hsl(var(--accent));
+    color: hsl(var(--on-accent));
+    transition: var(--transition-smooth);
+  }
+  .btn:hover { filter: brightness(1.05); transform: translateY(-1px); }
+  .shadow-birthday { box-shadow: var(--shadow-elegant); }
+  .animate-fade-in { animation: fade-in 0.3s ease-out; }
+  .animate-enter { animation: fade-in 0.3s ease-out, scale-in 0.2s ease-out; }
+  .hover-scale { transition: transform 0.2s ease; }
+  .hover-scale:hover { transform: scale(1.03); }
+}
