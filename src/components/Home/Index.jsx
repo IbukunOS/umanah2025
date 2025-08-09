@@ -1,4 +1,4 @@
-import video from '../../assets/video/1ENIoa5sjq.mp4'
+import video from '../../assets/video/hero.mp4'
 import Row from '../Row'
 import {useEffect, useState, useRef} from 'react';
 import {motion, useScroll, useMotionValueEvent } from 'framer-motion';
@@ -94,9 +94,7 @@ function Home({ onGalleryClick }) {
     <div ref={container} data-color="black" className="home section w-full h-[200vh] relative  ">
         <div className='w-full sticky top-0 left-0 '>
             {/* navbar */}
-            
-
-            <div className='btmtext absolute z-[4] bottom-[4%] left-[25%] text-center sm:text-start sm:bottom-[7%] sm:left-8 w-48 '>
+            <div className='btmtext absolute z-[4] bottom-[4%] right-[10%] pr-4 text-center sm:text-end sm:bottom-[7%] sm:right-8 w-48 '>
                 <h1 className='sm:text-[2vh] font-semibold'>
                     🎉 Celebrating another year
                     of memories, joy, and 

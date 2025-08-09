@@ -84,7 +84,7 @@ function Gallery({ onBack }) {
         <div data-color="white" className='gallery-page section font-[SansitaReg] py-20'>
             <div className="head1">
                 <h1 className="text-5xl sm:text-6xl text-center tracking-tight">
-                    🎉 Birthday Gallery 📸
+                    Birthday Gallery 🎉
                 </h1>
                 <p className="text-center mt-4 text-zinc-600 font-[Sansita]">Share your birthday memories with everyone!</p>
                 <div className="text-center mt-6 flex gap-4 justify-center">
@@ -94,7 +94,7 @@ function Gallery({ onBack }) {
                         disabled={uploading}
                         className="bg-[#e9bbff] text-black p-3 rounded-md font-semibold disabled:opacity-50"
                     >
-                        {uploading ? '📤 Uploading...' : '📸 Upload Photo'}
+                        {uploading ? '📤 Uploading...' : 'Upload Media'}
                     </button>
                 </div>
                 <input
@@ -118,10 +118,14 @@ function Gallery({ onBack }) {
                                 {file.name.includes('.mp4') || file.name.includes('.webm') ? (
                                     <video 
                                         src={`${supabaseUrl}/storage/v1/object/public/gallery/${file.name}`}
-                                        className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
-                                        controls
+                                        className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300 pointer-events-none select-none"
                                         muted
                                         preload="metadata"
+                                        autoPlay
+                                        loop
+                                        controls={false}
+                                        tabIndex={-1}
+                                        style={{ outline: 'none' }}
                                     />
                                 ) : (
                                     <img 

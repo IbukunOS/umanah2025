@@ -38,8 +38,8 @@ gsap.registerPlugin(ScrollTrigger);
     >
         <div className="left sm:w-1/3 h-full flex flex-col sm:justify-between py-10 items-start " >
             <h1 className="w-2/3 font-[Sansita] text-[2.8vh] leading-[4vh] font-medium">
-                Celebrate the unique story, passions, and dreams of the celebrant.<br/>
-                Make their day truly personal and unforgettable.
+                Celebrate the unique story, passions, and dreams of Mrs. Umanah Linda Okheloaga.<br/>
+                Make her day truly personal and unforgettable.
             </h1>
             <div className="heading">
                 <h1 className="font-[SansitaReg] text-[5vh] leading-[6.5vh] sm:text-[8vh] py-5 sm:leading-[9vh]">About <br/> The Celebrant</h1>

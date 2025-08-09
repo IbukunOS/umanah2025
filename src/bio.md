@@ -41,6 +41,6 @@ Long Service Award (2024) – Lagos State Universal Basic Education Board
 
 FAMILY
 
-She is happily married to Rev. Friday George Umanah, and their union is blessed with a son, Mr Eno-Abasi Emmanuel Umanah, an undergraduate of McPherson University.
+She is happily married to Rev. Friday George Umanah, and their union is blessed with a son and daughter, Mr Eno-Abasi Emmanuel Umanah and Ms. Onakorame E. Esther, both undergraduates of McPherson University.
 
 Her hobbies include reading, working, cooking, supporting the needy, and regular visits to the Correctional Centre for Boys, Oregun, Ikeja, under the Four Square Gospel Church, Surulere District Headquarters.

@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import celeb from "../../assets/images/celeb.png";
+import Button from "../Button";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -54,7 +55,7 @@ She was appointed Head of Section (Human Resource Management) on August 15, 2017
   },
   {
     title: "Family & Personal Life",
-    content: `She is happily married to Rev. Friday George Umanah, and their union is blessed with a son, Mr. Eno-Abasi Emmanuel Umanah, an undergraduate of McPherson University.
+    content: `She is happily married to Rev. Friday George Umanah, and their union is blessed with a son and daughter, Mr Eno-Abasi Emmanuel Umanah and Ms. Onakorame E. Esther, both undergraduates of McPherson University.
 
 Her hobbies include reading, working, cooking, supporting the needy, and regular visits to the Correctional Centre for Boys, Oregun, Ikeja, under the Four Square Gospel Church, Surulere District Headquarters.`,
     bg: "bg-gradient-to-br from-rose-50 to-pink-50",
@@ -64,6 +65,9 @@ Her hobbies include reading, working, cooking, supporting the needy, and regular
 
 function BioPage() {
   const containerRef = useRef(null);
+  const refreshPage = () => {
+        window.location.reload(true); // `false` reloads from cache, `true` forces a full server fetch
+      };
 
   useEffect(() => {
     // Always scroll to top when this page loads
@@ -190,8 +194,13 @@ function BioPage() {
     <div ref={containerRef} className="bg-white min-h-screen">
       {/* Hero Section */}
       <section className="hero-section flex flex-col items-center justify-center py-24 px-6 bg-gradient-to-br from-yellow-100 via-orange-100 to-amber-100 relative overflow-hidden">
-        <button onClick={() => window.history.back()} className="absolute top-4 left-4 hover:bg-yellow-300 bg-black text-white px-4 py-2 rounded">Back</button>
-        {/* Background decoration */}
+        {/* Back Button - top left */}
+        <div className="absolute top-6 left-6 z-20">
+          <div onClick={refreshPage} style={{ cursor: 'pointer' }}>
+            <Button bgColor="bg-[#f5f19c]" text="BACK" />
+          </div>
+        </div>
+        {/* Background decoration */}}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-20 left-20 w-32 h-32 bg-yellow-300 rounded-full blur-xl"></div>
           <div className="absolute bottom-20 right-20 w-24 h-24 bg-orange-300 rounded-full blur-lg"></div>
