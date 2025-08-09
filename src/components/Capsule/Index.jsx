@@ -38,18 +38,16 @@ gsap.registerPlugin(ScrollTrigger);
     >
         <div className="left sm:w-1/3 h-full flex flex-col sm:justify-between py-10 items-start " >
             <h1 className="w-2/3 font-[Sansita] text-[2.8vh] leading-[4vh] font-medium">
-                Discover birthday celebration
-                ideas, party planning tips,
-                and memorable moments
-                to inspire your special day.
+                Celebrate the unique story, passions, and dreams of the celebrant.<br/>
+                Make their day truly personal and unforgettable.
             </h1>
             <div className="heading">
-                <h1 className="font-[SansitaReg] text-[5vh] leading-[6.5vh] sm:text-[8vh] py-5 sm:leading-[9vh]">Birthday <br/> Inspiration</h1>
-                <Button bgColor="bg-[#f5f19c]" text="EXPLORE MORE IDEAS" />
+                <h1 className="font-[SansitaReg] text-[5vh] leading-[6.5vh] sm:text-[8vh] py-5 sm:leading-[9vh]">About <br/> The Celebrant</h1>
+                <Button bgColor="bg-[#f5f19c]" text="MEET THE CELEBRANT" />
             </div>
         </div>
         <div className=" right font-[SansitaReg] mt-10 sm:w-2/3 space-y-10 h-full sm:flex items-start justify-start sm:gap-20  ">
-            {/* 1st capsule */}
+            {/* 1st capsule: About the celebrant */}
             <div   
                 className="capsule flex flex-col items-center gap-4 p-6 sm:-rotate-[16deg] sm:translate-y-10
                 rounded-full border-[1px] border-black">
@@ -57,34 +55,28 @@ gsap.registerPlugin(ScrollTrigger);
                     <img className="h-full w-full object-cover" src={cap1} />
                 </div>
                 <div className="text text-center text-[6vw] sm:text-[3.2vh] font-semibold mt-10 leading-[4.8vh]">
-                    <h3>🎂 Ultimate Birthday <br/>
-                        Party Planning Guide: <br/> Creating Magical <br/>Moments That 
-                        Last <br/> a Lifetime 🎉
+                    <h3>Meet the Celebrant <br/>
+                        Discover their story, <br/> passions, and what <br/> makes them unique.
                     </h3>
                 </div>
-                <button className="bg-[#e9bbff] text-black px-4 rounded-full text-medium py-3 mb-10 mt-10 font-semibold">Party Planning</button>
-
+                <button className="bg-[#e9bbff] text-black px-4 rounded-full text-medium py-3 mb-10 mt-10 font-semibold">About Them</button>
             </div>
-            {/* 2nd capsule */}
+            {/* 2nd capsule: Celebrant's favorites */}
             <div   
                 className="capsule flex flex-col items-center gap-4 p-6 sm:-rotate-[16deg] sm:translate-y-40
                 rounded-full border-[1px] border-black"
             >
-                    <button className="bg-[#e9bbff] text-black px-4 rounded-full text-medium py-3 mb-6 mt-10 font-semibold">Birthday Ideas</button>
-                
+                <button className="bg-[#e9bbff] text-black px-4 rounded-full text-medium py-3 mb-6 mt-10 font-semibold">Favorites</button>
                 <div className="text text-center text-[3.2vh] flex flex-col gap-6 mb-6 font-semibold leading-[4.8vh]">
-                    <h3>🎈 Creative Birthday <br/>
-                        Decoration Ideas <br/>to Transform Any <br/>Space into Magic
+                    <h3>💖 Their Favorite Things <br/>
+                        Hobbies, foods, music, <br/> and memories that <br/> light up their world.
                     </h3>
-                    <h4 className="font-[Sansita] text-[1.9vh] font-medium leading-[2.8vh] text-zinc-500">Discover stunning decoration themes <br/> and DIY projects that will make your <br/>
-                        birthday celebration unforgettable 
+                    <h4 className="font-[Sansita] text-[1.9vh] font-medium leading-[2.8vh] text-zinc-500">Get inspired by what brings them joy <br/> and makes their celebration <br/> truly personal.
                     </h4>
                 </div>
                 <div className="image w-[74vw] h-[74vw] sm:w-[40vh] sm:h-[40vh]  rounded-full overflow-hidden">
                     <img className="h-full w-full object-cover" src={cap2} />
                 </div>
-                
-
             </div>
         </div>
     </div>

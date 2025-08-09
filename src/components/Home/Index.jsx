@@ -131,7 +131,7 @@ function Home({ onGalleryClick }) {
                     className=' heading absolute  top-[12%] sm:top-[7%] left-1/2 
                     -translate-x-1/2 w-72'
                 >
-                    <h2 className='toptext text-[2.2vh] font-[Sansita] tracking-wide font-medium text-center'>Happy Birthday! Make a wish and celebrate. Happy Birthday! Make a wish and celebrate.</h2>
+                    <h2 className='toptext text-[2.2vh] font-[Sansita] tracking-wide font-medium text-center'>Happy Birthday Mummy!.</h2>
                 </div>
 
                 <div 
