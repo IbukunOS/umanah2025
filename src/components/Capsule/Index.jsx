@@ -8,7 +8,7 @@ import { useGSAP } from '@gsap/react';
 import { Power4} from 'gsap/gsap-core';
 gsap.registerPlugin(ScrollTrigger);
 
- function Capsule() {
+ function Capsule({ onBioClick }) {
     const container = useRef(null);
 
     useGSAP(() => {
@@ -43,7 +43,9 @@ gsap.registerPlugin(ScrollTrigger);
             </h1>
             <div className="heading">
                 <h1 className="font-[SansitaReg] text-[5vh] leading-[6.5vh] sm:text-[8vh] py-5 sm:leading-[9vh]">About <br/> The Celebrant</h1>
-                <Button bgColor="bg-[#f5f19c]" text="MEET THE CELEBRANT" />
+                                <div onClick={onBioClick} style={{ cursor: 'pointer' }}>
+                                    <Button bgColor="bg-[#f5f19c]" text="MEET THE CELEBRANT" />
+                                </div>
             </div>
         </div>
         <div className=" right font-[SansitaReg] mt-10 sm:w-2/3 space-y-10 h-full sm:flex items-start justify-start sm:gap-20  ">

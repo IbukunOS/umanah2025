@@ -1,4 +1,4 @@
-import img1 from '../../assets/images/review2.jpg'
+import img1 from '../../assets/images/eno.png'
 import { useEffect } from 'react';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -41,8 +41,8 @@ function BirthdayTestimonies() {
                 <div className="image w-24 h-24 overflow-hidden rounded-full ">
                     <img src={img1} />
                 </div>
-                <h1 className='text-[2.8vh] sm:text-[3.8vh] font-medium'>Happy User</h1>
-                <h3 className='text-zinc-500 text-[2.4vh] whitespace-nowrap'>Birthday Enthusiast</h3>
+                <h1 className='text-[2.8vh] sm:text-[3.8vh] font-medium'>Umanah Eno Abasi</h1>
+                <h3 className='text-zinc-500 text-[2.4vh] whitespace-nowrap'>Another Celebrant Pikin</h3>
             </div>
         </div>  
     </div>

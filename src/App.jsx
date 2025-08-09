@@ -1,5 +1,6 @@
 import './App.css'
 import Capsule from './components/Capsule/Index'
+import BioPage from './components/Bio/Index';
 
 import { useEffect, useRef, useState } from 'react';
 import Home from './components/Home/Index'
@@ -16,12 +17,11 @@ function App() {
   const [page, setPage] = useState('home');
 
   useEffect(() => {
-    if (scrollRef.current) {
+    if (page !== 'bio' && scrollRef.current) {
       const scroll = new LocomotiveScroll({
         el: scrollRef.current,
         smooth: true, 
       });
-
       return () => {
         scroll.destroy();
       };
@@ -45,23 +45,28 @@ function App() {
     })
   })
       
+
   const handleGalleryClick = () => setPage('gallery');
   const handleBackClick = () => setPage('home');
+  const handleBioClick = () => setPage('bio');
+
 
   if (page === 'gallery') {
     return <Gallery onBack={handleBackClick} />
   }
+  if (page === 'bio') {
+    return <BioPage />;
+  }
 
   return (
-    
-    <div className='section main w-full '>
+    <div ref={scrollRef} className='section main w-full '>
       <Home onGalleryClick={handleGalleryClick} />
       <Wishes />
       <BirthdayInsights  />
       <BirthdayTestimonies />
-      <Capsule />
+      <Capsule onBioClick={handleBioClick} />
       <ScrollToTop />
-    </div>    
+    </div>
   )
 }
 
