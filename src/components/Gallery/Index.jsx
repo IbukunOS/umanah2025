@@ -20,19 +20,64 @@ function Gallery({ onBack }) {
         const file = event.target.files[0];
         if (!file) return;
 
+        // Validate file type
+        const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'video/mp4', 'video/webm'];
+        if (!allowedTypes.includes(file.type)) {
+            alert('Please upload an image (JPEG, PNG, GIF, WebP) or video (MP4, WebM) file.');
+            return;
+        }
+
+        // Validate file size (max 10MB)
+        const maxSize = 10 * 1024 * 1024;
+        if (file.size > maxSize) {
+            alert('File size must be less than 10MB.');
+            return;
+        }
+
         setUploading(true);
         const fileName = `${Date.now()}-${file.name}`;
 
-        const { error } = await supabase.storage
-            .from('gallery')
-            .upload(fileName, file);
+        try {
+            const { error } = await supabase.storage
+                .from('gallery')
+                .upload(fileName, file);
 
-        if (error) {
-            console.error('Error uploading file:', error);
-        } else {
-            fetchFiles(); // Refresh the gallery
+            if (error) {
+                console.error('Error uploading file:', error);
+                alert('Failed to upload file. Please try again.');
+            } else {
+                fetchFiles(); // Refresh the gallery
+                // Clear the file input
+                if (fileInputRef.current) {
+                    fileInputRef.current.value = '';
+                }
+            }
+        } catch (err) {
+            console.error('Upload error:', err);
+            alert('An error occurred while uploading. Please try again.');
         }
+        
         setUploading(false);
+    };
+
+    const handleFileDelete = async (fileName) => {
+        if (!confirm('Are you sure you want to delete this file?')) return;
+
+        try {
+            const { error } = await supabase.storage
+                .from('gallery')
+                .remove([fileName]);
+
+            if (error) {
+                console.error('Error deleting file:', error);
+                alert('Failed to delete file. Please try again.');
+            } else {
+                fetchFiles(); // Refresh the gallery
+            }
+        } catch (err) {
+            console.error('Delete error:', err);
+            alert('An error occurred while deleting. Please try again.');
+        }
     };
 
     return (
@@ -67,14 +112,42 @@ function Gallery({ onBack }) {
                         <p className="text-zinc-400">Be the first to share a birthday memory!</p>
                     </div>
                 ) : (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                         {files.map((file) => (
-                            <div key={file.name} className="aspect-square rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-                                <img 
-                                    src={`${supabaseUrl}/storage/v1/object/public/gallery/${file.name}`} 
-                                    alt={file.name} 
-                                    className="object-cover w-full h-full hover:scale-105 transition-transform duration-300" 
-                                />
+                            <div key={file.name} className="group relative aspect-square rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
+                                {file.name.includes('.mp4') || file.name.includes('.webm') ? (
+                                    <video 
+                                        src={`${supabaseUrl}/storage/v1/object/public/gallery/${file.name}`}
+                                        className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
+                                        controls
+                                        muted
+                                        preload="metadata"
+                                    />
+                                ) : (
+                                    <img 
+                                        src={`${supabaseUrl}/storage/v1/object/public/gallery/${file.name}`} 
+                                        alt={`Birthday memory: ${file.name}`}
+                                        className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300" 
+                                        loading="lazy"
+                                    />
+                                )}
+                                
+                                {/* Delete button overlay */}
+                                <button 
+                                    onClick={() => handleFileDelete(file.name)}
+                                    className="absolute top-2 right-2 bg-red-500 text-white rounded-full w-8 h-8 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-red-600"
+                                    title="Delete this file"
+                                >
+                                    ✕
+                                </button>
+                                
+                                {/* File info overlay */}
+                                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                                    <p className="text-white text-sm truncate">{file.name.split('-').slice(1).join('-')}</p>
+                                    <p className="text-white/70 text-xs">
+                                        {new Date(parseInt(file.name.split('-')[0])).toLocaleDateString()}
+                                    </p>
+                                </div>
                             </div>
                         ))}
                     </div>
