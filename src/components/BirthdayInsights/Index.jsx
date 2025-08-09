@@ -1,4 +1,4 @@
-import img1 from '../../assets/images/Ejiro.png';
+import img1 from '../../assets/images/ejiro.png';
 import { useEffect } from 'react';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
