@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 function Row({ translateClass, direction }) {
 
     const items = [
-        { text: "Happy Birthday!", },
         { text: "Beloved Teacher", },
         { text: "Inspiring Mentor", },
         { text: "Guiding Light", },

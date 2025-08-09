@@ -55,7 +55,7 @@ She was appointed Head of Section (Human Resource Management) on August 15, 2017
   },
   {
     title: "Family & Personal Life",
-    content: `She is happily married to Rev. Friday George Umanah, and their union is blessed with a son and daughter, Mr Eno-Abasi Emmanuel Umanah and Ms. Onakorame E. Esther, both undergraduates of McPherson University.
+    content: `She is happily married to Rev. Friday George Umanah, and their union is blessed with a son, Mr Eno-Abasi Emmanuel Umanah, an undergraduate of McPherson University.
 
 Her hobbies include reading, working, cooking, supporting the needy, and regular visits to the Correctional Centre for Boys, Oregun, Ikeja, under the Four Square Gospel Church, Surulere District Headquarters.`,
     bg: "bg-gradient-to-br from-rose-50 to-pink-50",
