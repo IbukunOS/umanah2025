@@ -4,6 +4,7 @@ import { supabase, supabaseUrl } from '../../supabaseClient';
 function Gallery({ onBack }) {
     const [files, setFiles] = useState([]);
     const [uploading, setUploading] = useState(false);
+    const [viewerIndex, setViewerIndex] = useState(null); // Index of the file being viewed
     const fileInputRef = useRef(null);
 
     useEffect(() => {
@@ -15,7 +16,7 @@ function Gallery({ onBack }) {
         if (error) console.error('Error fetching files: ', error);
         else setFiles(data || []);
     };
-    // handle file download
+
     const handleFileDownload = async (fileName) => {
         try {
             const { data, error } = await supabase.storage.from('gallery').download(fileName);
@@ -24,28 +25,27 @@ function Gallery({ onBack }) {
             const url = URL.createObjectURL(data);
             const a = document.createElement('a');
             a.href = url;
-            a.download = fileName.split('-').slice(1).join('-'); // Use original filename
+            a.download = fileName.split('-').slice(1).join('-');
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
-            URL.revokeObjectURL(url); // Clean up
+            URL.revokeObjectURL(url);
         } catch (error) {
             console.error('Error downloading file: ', error);
             alert('Failed to download file. Please try again.');
         }
     };
+
     const handleFileUpload = async (event) => {
         const file = event.target.files[0];
         if (!file) return;
 
-        // Validate file type
         const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'video/mp4', 'video/webm'];
         if (!allowedTypes.includes(file.type)) {
             alert('Please upload an image (JPEG, PNG, GIF, WebP) or video (MP4, WebM) file.');
             return;
         }
 
-        // Validate file size (max 10MB)
         const maxSize = 10 * 1024 * 1024;
         if (file.size > maxSize) {
             alert('File size must be less than 10MB.');
@@ -64,8 +64,7 @@ function Gallery({ onBack }) {
                 console.error('Error uploading file:', error);
                 alert('Failed to upload file. Please try again.');
             } else {
-                fetchFiles(); // Refresh the gallery
-                // Clear the file input
+                fetchFiles();
                 if (fileInputRef.current) {
                     fileInputRef.current.value = '';
                 }
@@ -90,13 +89,38 @@ function Gallery({ onBack }) {
                 console.error('Error deleting file:', error);
                 alert('Failed to delete file. Please try again.');
             } else {
-                fetchFiles(); // Refresh the gallery
+                fetchFiles();
             }
         } catch (err) {
             console.error('Delete error:', err);
             alert('An error occurred while deleting. Please try again.');
         }
     };
+
+    // Viewer controls
+    const openViewer = (idx) => setViewerIndex(idx);
+    const closeViewer = () => setViewerIndex(null);
+    const prevViewer = (e) => {
+        e?.stopPropagation();
+        setViewerIndex((idx) => (idx > 0 ? idx - 1 : files.length - 1));
+    };
+    const nextViewer = (e) => {
+        e?.stopPropagation();
+        setViewerIndex((idx) => (idx < files.length - 1 ? idx + 1 : 0));
+    };
+
+    // Keyboard navigation for viewer
+    useEffect(() => {
+        if (viewerIndex === null) return;
+        const handler = (e) => {
+            if (e.key === 'ArrowLeft') prevViewer();
+            if (e.key === 'ArrowRight') nextViewer();
+            if (e.key === 'Escape') closeViewer();
+        };
+        window.addEventListener('keydown', handler);
+        return () => window.removeEventListener('keydown', handler);
+        // eslint-disable-next-line
+    }, [viewerIndex, files.length]);
 
     return (
         <div data-color="white" className='gallery-page section font-[SansitaReg] py-20'>
@@ -131,8 +155,16 @@ function Gallery({ onBack }) {
                     </div>
                 ) : (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                        {files.map((file) => (
-                            <div key={file.name} className="group relative aspect-square rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
+                        {files.map((file, idx) => (
+                            <div
+                                key={file.name}
+                                className="group relative aspect-square rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+                                onClick={() => openViewer(idx)}
+                                tabIndex={0}
+                                role="button"
+                                aria-label="View media"
+                                onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') openViewer(idx); }}
+                            >
                                 {file.name.includes('.mp4') || file.name.includes('.webm') ? (
                                     <video 
                                         src={`${supabaseUrl}/storage/v1/object/public/gallery/${file.name}`}
@@ -155,7 +187,7 @@ function Gallery({ onBack }) {
                                     />
                                 )}
                                 <button 
-                                    onClick={() => handleFileDownload(file.name)}
+                                    onClick={e => { e.stopPropagation(); handleFileDownload(file.name); }}
                                     className="absolute top-2 right-2 bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-blue-600"
                                     title="Download this file"
                                 >
@@ -163,8 +195,6 @@ function Gallery({ onBack }) {
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                                     </svg>
                                 </button>
-
-                                {/* File info overlay */}
                                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                                     <p className="text-white text-sm truncate">{file.name.split('-').slice(1).join('-')}</p>
                                     <p className="text-white/70 text-xs">
@@ -176,6 +206,68 @@ function Gallery({ onBack }) {
                     </div>
                 )}
             </div>
+
+            {/* Media Viewer Modal */}
+            {viewerIndex !== null && files[viewerIndex] && (
+                <div
+                    className="fixed inset-0 z-50 flex items-center justify-center bg-black/80"
+                    onClick={closeViewer}
+                    style={{ animation: 'fadeIn .2s' }}
+                >
+                    <div
+                        className="relative max-w-3xl w-full max-h-[90vh] flex flex-col items-center"
+                        onClick={e => e.stopPropagation()}
+                    >
+                        <button
+                            onClick={closeViewer}
+                            className="absolute top-2 right-2 bg-black/70 text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-black"
+                            title="Close"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                        <button
+                            onClick={prevViewer}
+                            className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/70 text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-black"
+                            title="Previous"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                            </svg>
+                        </button>
+                        <button
+                            onClick={nextViewer}
+                            className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/70 text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-black"
+                            title="Next"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
+                        </button>
+                        <div className="flex-1 flex items-center justify-center w-full max-h-[80vh]">
+                            {files[viewerIndex].name.includes('.mp4') || files[viewerIndex].name.includes('.webm') ? (
+                                <video
+                                    src={`${supabaseUrl}/storage/v1/object/public/gallery/${files[viewerIndex].name}`}
+                                    className="max-h-[80vh] max-w-full rounded-lg bg-black"
+                                    controls
+                                    autoPlay
+                                />
+                            ) : (
+                                <img
+                                    src={`${supabaseUrl}/storage/v1/object/public/gallery/${files[viewerIndex].name}`}
+                                    alt={`Birthday memory: ${files[viewerIndex].name}`}
+                                    className="max-h-[80vh] max-w-full rounded-lg bg-black"
+                                />
+                            )}
+                        </div>
+                        <div className="mt-4 text-center text-white">
+                            <div className="font-semibold text-lg">{files[viewerIndex].name.split('-').slice(1).join('-')}</div>
+                            <div className="text-sm text-zinc-300">{new Date(parseInt(files[viewerIndex].name.split('-')[0])).toLocaleString()}</div>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     )
 }
