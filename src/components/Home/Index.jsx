@@ -98,11 +98,11 @@ function Home({ onGalleryClick }) {
 
             <div className='btmtext absolute z-[4] bottom-[4%] left-[25%] text-center sm:text-start sm:bottom-[7%] sm:left-8 w-48 '>
                 <h1 className='sm:text-[2vh] font-semibold'>
-                    We build big ideas.
-                    Software. Apps. Tools.
-                    For real people. Real lives.
+                    🎉 Celebrating another year
+                    of memories, joy, and 
+                    wonderful moments together! 🎂
                 </h1>
-                <button onClick={onGalleryClick} className="bg-[#f5f19c] text-black p-2 rounded-md mt-4">View Gallery</button>
+                <button onClick={onGalleryClick} className="bg-[#f5f19c] text-black p-2 rounded-md mt-4">🎈 View Birthday Gallery</button>
             </div>
             {/* video div */}
             <div 
@@ -131,7 +131,7 @@ function Home({ onGalleryClick }) {
                     className=' heading absolute  top-[12%] sm:top-[7%] left-1/2 
                     -translate-x-1/2 w-72'
                 >
-                    <h2 className='toptext text-[2.2vh] font-[Sansita] tracking-wide font-medium text-center'>We are a digital health studio. We are a digital health studio.</h2>
+                    <h2 className='toptext text-[2.2vh] font-[Sansita] tracking-wide font-medium text-center'>Happy Birthday! Make a wish and celebrate. Happy Birthday! Make a wish and celebrate.</h2>
                 </div>
 
                 <div 
