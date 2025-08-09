@@ -123,6 +123,8 @@ function Gallery({ onBack }) {
                                         preload="metadata"
                                         autoPlay
                                         loop
+                                        playsInline
+                                        controlsList="nodownload"
                                         controls={false}
                                         tabIndex={-1}
                                         style={{ outline: 'none' }}

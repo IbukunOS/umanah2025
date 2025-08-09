@@ -1,4 +1,6 @@
-import video from '../../assets/video/hero.mp4'
+import heroVideo from '../../assets/video/hero-desktop.mp4'
+import heroMobileVideo from '../../assets/video/hero-mobile.mp4'
+import posterImg from '../../assets/images/preview.png';
 import Row from '../Row'
 import {useEffect, useState, useRef} from 'react';
 import {motion, useScroll, useMotionValueEvent } from 'framer-motion';
@@ -14,9 +16,24 @@ gsap.registerPlugin(ScrollTrigger);
 
 gsap.set(".slidesm", {scale: 5})
 
+
+function getIsMobile() {
+    if (typeof window === 'undefined') return false;
+    return window.innerWidth <= 640;
+}
+
 function Home({ onGalleryClick }) {
 
     const container = useRef(null);
+    const [isMobile, setIsMobile] = useState(getIsMobile());
+
+    useEffect(() => {
+        function handleResize() {
+            setIsMobile(getIsMobile());
+        }
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     useEffect(() => {
         var clutter = "";
@@ -93,14 +110,16 @@ function Home({ onGalleryClick }) {
     return (
     <div ref={container} data-color="black" className="home section w-full h-[200vh] relative  ">
         <div className='w-full sticky top-0 left-0 '>
-            {/* navbar */}
+            {/* gallery link */}
             <div className='btmtext absolute z-[4] bottom-[4%] right-[10%] pr-4 text-center sm:text-end sm:bottom-[7%] sm:right-8 w-48 '>
-                <h1 className='sm:text-[2vh] font-semibold'>
-                    🎉 Celebrating another year
-                    of memories, joy, and 
-                    wonderful moments together! 🎂
-                </h1>
-                <button onClick={onGalleryClick} className="bg-[#f5f19c] text-black p-2 rounded-md mt-4">🎈 View Birthday Gallery</button>
+                {!isMobile && (
+                    <h1 className='sm:text-[2vh] font-semibold'>
+                        🎉 Celebrating another year
+                        of memories, joy, and 
+                        wonderful moments together! 🎂
+                    </h1>
+                )}
+                <button onClick={onGalleryClick} className="bg-[#f5f19c] text-black p-2 rounded-md mt-4">🎈 Go to Gallery</button>
             </div>
             {/* video div */}
             <div 
@@ -114,9 +133,11 @@ function Home({ onGalleryClick }) {
                     autoPlay
                     loop
                     muted
-                    src={video}
-                >     
-                </video> 
+                    playsInline
+                    poster={posterImg}
+                    src={isMobile ? heroMobileVideo : heroVideo}
+                >
+                </video>
             </div>
 
             {/* marquee div */}
