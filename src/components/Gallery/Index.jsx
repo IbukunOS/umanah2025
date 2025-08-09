@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
 import { supabase, supabaseUrl } from '../../supabaseClient';
-import posterImg from '../../assets/images/loading.png';
 
 function Gallery({ onBack }) {
     const [files, setFiles] = useState([]);
@@ -16,7 +15,25 @@ function Gallery({ onBack }) {
         if (error) console.error('Error fetching files: ', error);
         else setFiles(data || []);
     };
+    // handle file download
+    const handleFileDownload = async (fileName) => {
+        try {
+            const { data, error } = await supabase.storage.from('gallery').download(fileName);
+            if (error) throw error;
 
+            const url = URL.createObjectURL(data);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = fileName.split('-').slice(1).join('-'); // Use original filename
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url); // Clean up
+        } catch (error) {
+            console.error('Error downloading file: ', error);
+            alert('Failed to download file. Please try again.');
+        }
+    };
     const handleFileUpload = async (event) => {
         const file = event.target.files[0];
         if (!file) return;
@@ -122,10 +139,9 @@ function Gallery({ onBack }) {
                                         className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300 pointer-events-none select-none"
                                         muted
                                         playsInline
+                                        autoPlay
                                         loop
                                         preload="metadata"
-                                        poster={posterImg}
-                                        controlsList="nodownload"
                                         controls={false}
                                         tabIndex={-1}
                                         style={{ outline: 'none' }}
@@ -138,16 +154,16 @@ function Gallery({ onBack }) {
                                         loading="lazy"
                                     />
                                 )}
-                                
-                                {/* Delete button overlay */}
-                                {/* <button 
-                                    onClick={() => handleFileDelete(file.name)}
-                                    className="absolute top-2 right-2 bg-red-500 text-white rounded-full w-8 h-8 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-red-600"
-                                    title="Delete this file"
+                                <button 
+                                    onClick={() => handleFileDownload(file.name)}
+                                    className="absolute top-2 right-2 bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-blue-600"
+                                    title="Download this file"
                                 >
-                                    ✕
-                                </button> */}
-                                
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                    </svg>
+                                </button>
+
                                 {/* File info overlay */}
                                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                                     <p className="text-white text-sm truncate">{file.name.split('-').slice(1).join('-')}</p>
