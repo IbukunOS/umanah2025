@@ -113,11 +113,13 @@ function Home({ onGalleryClick }) {
             {/* gallery link */}
             <div className='btmtext absolute z-[4] bottom-[4%] right-[10%] pr-4 text-center sm:text-end sm:bottom-[7%] sm:right-8 w-48 '>
                 {!isMobile && (
+                    <div className='pr-8'>
                     <h1 className='sm:text-[2vh] font-semibold'>
                         🎉 Celebrating another year
                         of memories, joy, and 
                         wonderful moments together! 🎂
                     </h1>
+                    </div>
                 )}
                 <button onClick={onGalleryClick} className="bg-[#f5f19c] text-black p-2 rounded-md mt-4">🎈 Go to Gallery</button>
             </div>

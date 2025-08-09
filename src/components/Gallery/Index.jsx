@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { supabase, supabaseUrl } from '../../supabaseClient';
+import posterImg from '../../assets/images/loading.png';
 
 function Gallery({ onBack }) {
     const [files, setFiles] = useState([]);
@@ -120,10 +121,10 @@ function Gallery({ onBack }) {
                                         src={`${supabaseUrl}/storage/v1/object/public/gallery/${file.name}`}
                                         className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300 pointer-events-none select-none"
                                         muted
-                                        preload="metadata"
-                                        autoPlay
-                                        loop
                                         playsInline
+                                        loop
+                                        preload="metadata"
+                                        poster={posterImg}
                                         controlsList="nodownload"
                                         controls={false}
                                         tabIndex={-1}
@@ -139,13 +140,13 @@ function Gallery({ onBack }) {
                                 )}
                                 
                                 {/* Delete button overlay */}
-                                <button 
+                                {/* <button 
                                     onClick={() => handleFileDelete(file.name)}
                                     className="absolute top-2 right-2 bg-red-500 text-white rounded-full w-8 h-8 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-red-600"
                                     title="Delete this file"
                                 >
                                     ✕
-                                </button>
+                                </button> */}
                                 
                                 {/* File info overlay */}
                                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
