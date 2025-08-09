@@ -35,9 +35,9 @@ function BirthdayInsights() {
     <div data-color="white" className="para section w-full flex items-center justify-center px-8  ">
         <div className="text sm:w-[80%] flex flex-col items-center sm:items-start justify-between ">
             <div className='hidden w-[50%] sm:flex items-center justify-center mb-12'>
-                <hr className='bg-zinc-400 w-[20%] h-[.3vh]' />
+                <hr className='bg-zinc-400 w-[40%] h-[.3vh]' />
             </div>    
-            <h3 className='textpara sm:w-[50%] text-blue-600 font-[Sansita] tracking-wide text-[2.4vh] sm:text-[3.5vh] font-medium text-center leading-[5vh] mb-10'>To the woman who stepped up when no one else did, thank you for being both our mum and dad.  
+            <h3 className='textpara sm:w-[70%] text-blue-600 font-[Sansita] tracking-wide text-[2.4vh] sm:text-[3.5vh] font-medium text-center leading-[5vh] mb-10'>To the woman who stepped up when no one else did, thank you for being both our mum and dad.  
 They say a mother's love is powerful, but a mother who fathers is unstoppable. You carried the weight of two roles, yet never let us feel the lack of one.
 
 Well, it's your birthday, Mum...  
@@ -54,6 +54,7 @@ Thank you, Mumsy.</h3>
             </div>
         </div>  
     </div>
+    
   )
 }
 

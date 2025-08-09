@@ -1,6 +1,7 @@
 import './App.css'
 import Capsule from './components/Capsule/Index'
 import BioPage from './components/Bio/Index';
+import BirthdayMeh from './components/BirthdayMeh/index';
 
 import { useEffect, useRef, useState } from 'react';
 import Home from './components/Home/Index'
@@ -64,6 +65,7 @@ function App() {
       <Wishes />
       <BirthdayInsights  />
       <BirthdayTestimonies />
+      <BirthdayMeh/>
       <Capsule onBioClick={handleBioClick} />
       <ScrollToTop />
     </div>
