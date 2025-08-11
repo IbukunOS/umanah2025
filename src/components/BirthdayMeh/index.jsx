@@ -38,11 +38,10 @@ function BirthdayMeh() {
                 <hr className='bg-zinc-400 w-[40%] h-[.3vh]' />
             </div>    
             <h3 className='textpara sm:w-[70%] text-blue-600 font-[Sansita] tracking-wide text-[2.4vh] sm:text-[3.5vh] font-medium text-center leading-[5vh] mb-10'>
-                Today we celebrate an extraordinary milestone for an extraordinary woman — my mom. Not only is she turning 60 today, but she’s also stepping into a well-earned retirement after a lifetime of impact, service, and love.
-                She has always been more than just a mother to me and to many others. She is a woman of God, a leader, a guardian, a mentor, and a true friend. When she sees a problem, she never looks away. She does her best to solve it, and even if she can’t fix it all, she makes sure you never face it alone.
-                After my dad passed away, she carried the roles of both mother and father without complaint, showing strength and grace beyond measure. Even though I’m an only child, I never felt alone — a true testament to her love and the home she created.
-                Her kindness is magnetic, her intentions pure, and people are naturally drawn to her because they know she is genuine.
-                Happy 60th birthday and congratulations on your retirement, Mom. You’ve lived this chapter with courage and compassion, and I can’t wait to see what this next one holds for you.
+                I want to sincerely express how deeply grateful I am for everything Aunty Linda has done for me. When I was abroad, I went through a difficult time and couldn’t get into school, but she stepped in, found a way, and made it possible for me to continue my education in Nigeria.
+                She didn’t just help me with school — she generously welcomed me into her home and provided for all my needs, giving me a safe place to stay and food to eat. She treated me like her own.
+                I know I wasn’t always easy to live with, and I caused some trouble along the way. But even then, she remained patient, kind, and continued to show me love and care.
+                Thank you so much, Mum. I truly appreciate you from the bottom of my heart.
             </h3>
             <div className="pers w-[50%] flex flex-col items-center justify-center gap-2 ">
                 <div className="image w-24 h-24 overflow-hidden rounded-full ">

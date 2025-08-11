@@ -8,18 +8,18 @@ import { useGSAP } from '@gsap/react';
 import { Power4} from 'gsap/gsap-core';
 gsap.registerPlugin(ScrollTrigger);
 
- function Capsule({ onBioClick }) {
-    const container = useRef(null);
+function Capsule({ onBioClick }) {
+   const container = useRef(null);
 
-    useGSAP(() => {
-        const tl = gsap.timeline({
-            scrollTrigger: {
-            trigger: ".capsules",
-            start: "top 60%",
-            end: "bottom bottom",
-            scrub: .5,
-            }
-        });
+   useGSAP(() => {
+       const tl = gsap.timeline({
+           scrollTrigger: {
+           trigger: ".capsules",
+           start: "top 60%",
+           end: "bottom bottom",
+           scrub: .5,
+           }
+         });
         tl.to(".capsule:nth-child(2)", {
             y: 0,
             marginTop:32,

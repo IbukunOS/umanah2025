@@ -1,6 +1,6 @@
 import './App.css'
 import Capsule from './components/Capsule/Index'
-import BioPage from './components/Bio/Index';
+import Bio from './components/Bio/Index';
 import BirthdayMeh from './components/BirthdayMeh/index';
 
 import { useEffect, useRef, useState } from 'react';
@@ -56,7 +56,7 @@ function App() {
     return <Gallery onBack={handleBackClick} />
   }
   if (page === 'bio') {
-    return <BioPage />;
+    return <Bio onBack={handleBackClick} />;
   }
 
   return (
