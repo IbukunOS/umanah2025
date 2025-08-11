@@ -8,7 +8,7 @@ gsap.registerPlugin(ScrollTrigger);
 const bioSections = [
   {
     title: "Early Life",
-    content: `Mrs. Umanah Linda Okheloaga (née Isewede), fondly known as Aunty Linda, was born on August 11, 1965, at the General Hospital, Zaria, in Kano State. She is the daughter of Chief Edmond Alfegha Isewede and Mrs. Magret Molamo Isewede.`,
+    content: `Mrs. Umanah Linda Okheloa (née Isewede), fondly known as Aunty Linda, was born on August 11, 1965, at the General Hospital, Zaria, in Kano State. She is the daughter of Chief Edmond Alfegha Isewede and Mrs. Magret Molamo Isewede.`,
     bg: "bg-gradient-to-br from-amber-50 to-orange-50",
     accent: "border-amber-400"
   },
@@ -231,13 +231,13 @@ function Bio({ onBack }) {
           
           {/* <h1 className="hero-title text-5xl sm:text-6xl font-bold text-gray-800 mb-6 leading-tight">
             Umanah <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-orange-600">Linda </span> {!isMobile && (
-                    <h1>Okheloaga</h1>
+                    <h1>Okheloa</h1>
                 )}
           </h1> */}
           <h1 className="hero-title text-5xl sm:text-6xl font-bold text-gray-800 mb-6 leading-tight">
             Umanah <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-orange-600">Linda </span>
             {!isMobile && (
-              <span className="text-gray-800">Okheloaga</span>
+              <span className="text-gray-800">Okheloa</span>
               )}
           </h1>
           

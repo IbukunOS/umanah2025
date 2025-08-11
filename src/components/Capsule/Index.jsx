@@ -38,7 +38,7 @@ function Capsule({ onBioClick }) {
     >
         <div className="left sm:w-1/3 h-full flex flex-col sm:justify-between py-10 items-start " >
             <h1 className="w-2/3 font-[Sansita] text-[2.8vh] leading-[4vh] font-medium">
-                Celebrate the unique story, passions, and dreams of Mrs. Umanah Linda Okheloaga.<br/>
+                Celebrate the unique story, passions, and dreams of Mrs. Umanah Linda Okheloa.<br/>
                 Make her day truly personal and unforgettable.
             </h1>
             <div className="heading">

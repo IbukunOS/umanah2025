@@ -1,7 +1,7 @@
 CITATION OF OUTGOING HEAD OF SECTION, HUMAN RESOURCES AND ADMIN / DIRECTOR OF EDUCATION
 BY MRS. COMFORT UKPE DANSO
 
-Mrs. Umanah Linda Okheloaga (née Isewede), fondly known as Aunty Aunty Linda, was born on August 11, 1965, at the General Hospital, Zaria, in Kano State. She is the daughter of Chief Edmond Alfegha Isewede and Mrs. Magret Molamo Isewede.
+Mrs. Umanah Linda Okheloa (née Isewede), fondly known as Aunty Aunty Linda, was born on August 11, 1965, at the General Hospital, Zaria, in Kano State. She is the daughter of Chief Edmond Alfegha Isewede and Mrs. Magret Molamo Isewede.
 
 
 ACADEMIC PURSUIT
