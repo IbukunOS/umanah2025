@@ -9,9 +9,11 @@ function Wishes() {
   const [wishes, setWishes] = useState([]);
   const [newWish, setNewWish] = useState({ name: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [expandedWishId, setExpandedWishId] = useState(null);
 
   useEffect(() => {
     fetchWishes();
+    console.log(wishes)
     
     // Simple fade-in on scroll to keep animations consistent
     gsap.fromTo(
@@ -62,6 +64,10 @@ function Wishes() {
     setIsSubmitting(false);
   };
 
+  const toggleWishExpansion = (wishId) => {
+    setExpandedWishId(expandedWishId === wishId ? null : wishId);
+  };
+
   return (
     <section data-color="white" className="wishes-section section w-full px-8 py-16">
       <div className="max-w-5xl mx-auto">
@@ -109,7 +115,19 @@ function Wishes() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {wishes.map((wish) => (
               <article key={wish.id} className="wish-card rounded-xl border border-zinc-200 bg-white/70 backdrop-blur p-5 shadow-sm hover:shadow-md transition-shadow">
-                <p className="font-[Sansita] text-[2.2vh] leading-relaxed text-zinc-800 mb-3">{wish.message}</p>
+                <p className="font-[Sansita] text-[2.2vh] leading-relaxed text-zinc-800 mb-3">
+                  {wish.message.length > 400 && expandedWishId !== wish.id
+                    ? `${wish.message.substring(0, 400)}...`
+                    : wish.message}
+                  {wish.message.length > 400 && (
+                    <button
+                      onClick={() => toggleWishExpansion(wish.id)}
+                      className="text-blue-500 hover:underline ml-2"
+                    >
+                      {expandedWishId === wish.id ? 'Read Less' : 'Read More'}
+                    </button>
+                  )}
+                </p>
                 <div className="text-right">
                   <span className="text-sm font-semibold text-purple-600">- {wish.name}</span>
                 </div>
