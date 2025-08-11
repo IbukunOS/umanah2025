@@ -3,7 +3,6 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import celeb from "../../assets/images/celeb.png";
 import Button from "../Button";
-
 gsap.registerPlugin(ScrollTrigger);
 
 const bioSections = [
@@ -63,7 +62,22 @@ Her hobbies include reading, working, cooking, supporting the needy, and regular
   },
 ];
 
+function getIsMobile() {
+  if (typeof window === 'undefined') return false;
+  return window.innerWidth <= 640;
+}
+
 function Bio({ onBack }) {
+  
+  const [isMobile, setIsMobile] = React.useState(getIsMobile());
+  React.useEffect(() => {
+    function handleResize() {
+      setIsMobile(getIsMobile());
+    }
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const containerRef = useRef(null);
   // const refreshPage = () => {
   //       window.location.reload(true); // `false` reloads from cache, `true` forces a full server fetch
@@ -215,8 +229,16 @@ function Bio({ onBack }) {
             </div>
           </div>
           
+          {/* <h1 className="hero-title text-5xl sm:text-6xl font-bold text-gray-800 mb-6 leading-tight">
+            Umanah <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-orange-600">Linda </span> {!isMobile && (
+                    <h1>Okheloaga</h1>
+                )}
+          </h1> */}
           <h1 className="hero-title text-5xl sm:text-6xl font-bold text-gray-800 mb-6 leading-tight">
-            Meet the <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-orange-600">Celebrant</span>
+            Umanah <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-orange-600">Linda </span>
+            {!isMobile && (
+              <span className="text-gray-800">Okheloaga</span>
+              )}
           </h1>
           
           <div className="hero-quote max-w-2xl mx-auto">
