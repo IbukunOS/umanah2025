@@ -1,16 +1,16 @@
 import heroVideo from '../../assets/video/hero-desktop.mp4'
 import heroMobileVideo from '../../assets/video/hero-mobile.mp4'
 import posterImg from '../../assets/images/preview.png';
+import posterMobileImg from '../../assets/images/previewMobile.png'
 import Row from '../Row'
 import {useEffect, useState, useRef} from 'react';
-import {motion, useScroll, useMotionValueEvent } from 'framer-motion';
+import {useScroll, useMotionValueEvent } from 'framer-motion';
 import { gsap } from "gsap";
 import styles from './Style.module.css';
 import { Power2, Power4 } from 'gsap/gsap-core';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from '@gsap/react';
 // import { AiOutlineMenu } from "react-icons/ai";
-import { BiMenu } from "react-icons/bi";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -134,7 +134,7 @@ function Home({ onGalleryClick }) {
                     loop
                     muted
                     playsInline
-                    poster={posterImg}
+                    poster={isMobile ? posterMobileImg : posterImg}
                     src={isMobile ? heroMobileVideo : heroVideo}
                 >
                 </video>
